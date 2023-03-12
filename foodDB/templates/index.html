@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food On Go!!</title>
+    <style>
+        body {
+            /* background-color: #000000; */
+            /* color: #fff; */
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            font-size: 50px;
+            background-color: linear-gradient(red, yellow, blue);
+            margin: 0;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .container .navBar {
+            width: 100%;
+            height: auto;
+            background-color: #000000;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .container .navBar ul {
+            list-style: none;
+            display: inline-flex;
+            padding: 0px;
+        }
+
+        .container .navBar ul li {
+            width: 200px;
+            padding: 10px;
+        }
+
+        .container .navBar ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container.navBar ul li a:hover {
+            color: aliceblue;
+            transform: scale(1.5);
+        }
+        .container .items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            padding: 10px;
+            margin: 30px;
+
+        }
+        .items .card {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 #fff;
+        }
+        .items .card img {
+            width: 90%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header">Food On go</h1>
+    <div class="container">
+        <div class="navBar">
+            <ul>
+                <li>
+                    <a href="/Andhra">Telugu Ruchulu</a>
+                </li>
+                <li>
+                    <a href="/Amritam">Amritam</a>
+                </li>
+                <li>
+                    <a href="/Lovesugar">Love Sugar</a>
+                </li>
+                <li>
+                    <a href="/CasaBlanka">Casa blanka</a>
+                </li>
+                <li>
+                    <a href="/Chetashop">Cheta shop</a>
+                </li>
+            </ul>
+        </div>
+        <div class="items">
+            {% load static %}
+            {% for itm in all_hotelMenu %}
+                <div class="card">
+
+
+                    <img src= "{%static itm.image%}" alt="Veg Biryani">
+                    <h3>{{ itm.name }}</h3> 
+                    <p>{{itm.description}}</p>
+                    <p>{{itm.price}}</p>
+                    {% if itm.available %}
+                        <p style="color: green;">Available</p>
+                    {% else %}
+                        <p style="color: red;">Not Available</p>
+                    {% endif %}
+                    <p>{{itm.HotelName}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
